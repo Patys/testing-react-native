@@ -2,6 +2,15 @@
 
 It's a list of snippets, that will help you test your component properly.
 
+## What is worth testing
+
+ 1. Proper values
+ 2. Passing undefined or null value
+ 3. In case you are calculating something:
+  - proper numbers
+  - zero values (helps to test dividing)
+  - null/undefined (worth to check NaN or infinite values)
+
 ## Snapshot
 
 Simple test to check changes in snapshots. Pretty useful, but not really testing logic, but just props and style. Easy to ignore.
