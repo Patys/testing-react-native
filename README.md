@@ -11,6 +11,55 @@ It's a list of snippets, that will help you test your component properly.
   - zero values (helps to test dividing)
   - null/undefined (worth to check NaN or infinite values)
 
+# react-native-testing-library
+
+## Snapshot
+
+```javascript
+import React from 'react';
+import { render } from 'react-native-testing-library';
+
+import { Button } from 'components';
+
+describe('components/Button', () => {
+  const defaultProps = {
+    text: 'Hello world',
+  };
+
+  test('snapshot', () => {
+    const tree = render(<Button {...defaultProps} />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+});
+```
+
+## Button press
+
+```javascript
+import React from 'react';
+import { render, fireEvent } from 'react-native-testing-library';
+
+ import { Button } from 'components';
+
+ describe('components/Button', () => {
+  const defaultProps = {
+    text: 'Hello World'
+    onPress: jest.fn(),
+  };
+
+  test('Should handle click', () => {
+    const { getByTestId } = render(
+      <ButtonCard testID="button" {...defaultProps} />,
+    );
+    fireEvent.press(getByTestId('button'));
+
+    expect(defaultProps.onPress).toHaveBeenCalledTimes(1);
+  });
+});
+```
+
+# Enzyme
+
 ## Snapshot
 
 Simple test to check changes in snapshots. Pretty useful, but not really testing logic, but just props and style. Easy to ignore.
